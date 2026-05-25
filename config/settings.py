@@ -28,6 +28,9 @@ SECRET_KEY = 'django-insecure-^kg6)xhz(kg8xa*vik3=t___a3++%(ks(hm+2reb#5xc^#r))n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 AUTH_USER_MODEL = "user.User"
 
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'user',
     'company',
+    'llm',
 ]
 
 MIDDLEWARE = [
