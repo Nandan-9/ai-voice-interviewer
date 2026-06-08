@@ -14,6 +14,7 @@ _llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
     api_key=os.getenv("GEMINI_API_KEY"),
     temperature=0.4,
+    generation_config={"response_mime_type": "application/json"},
 )
 
 
@@ -41,5 +42,12 @@ def analyze_interview(questions, responses):
         HumanMessage(content=user_prompt),
     ])
 
-    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", response.content.strip(), flags=re.DOTALL)
-    return json.loads(cleaned)
+    raw = response.content.strip()
+    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.DOTALL).strip()
+    try:
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        match = re.search(r"\{.*\}", cleaned, re.DOTALL)
+        if match:
+            return json.loads(match.group(0))
+        raise

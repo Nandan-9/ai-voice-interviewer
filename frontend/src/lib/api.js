@@ -1,4 +1,4 @@
-const BASE = ''
+const BASE = 'http://localhost:8000'
 
 export async function registerUser(data) {
   const res = await fetch(`${BASE}/user/register/`, {

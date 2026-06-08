@@ -16,13 +16,14 @@ _llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
     api_key=os.getenv("GEMINI_API_KEY"),
     temperature=0.7,
+    generation_config={"response_mime_type": "application/json"},
 )
 
 
 def get_questions(company, role):
-    filters = {"role": role}
+    filters = {"role__description": role}
     if company:
-        filters["role__company"] = company
+        filters["role__company__name"] = company
     questions = QuestionBank.objects.filter(**filters).order_by('?')[:3]
     return list(questions)
 
@@ -47,8 +48,15 @@ def generate_interview(company, role):
         HumanMessage(content=user_prompt),
     ])
 
-    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", response.content.strip(), flags=re.DOTALL)
-    return json.loads(cleaned)
+    raw = response.content.strip()
+    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.DOTALL).strip()
+    try:
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        match = re.search(r"\{.*\}", cleaned, re.DOTALL)
+        if match:
+            return json.loads(match.group(0))
+        raise
 
 
 
