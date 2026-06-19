@@ -1,0 +1,282 @@
+[
+  {
+    "role_id": 1,
+    "company": "TCS",
+    "job_role": "Software Engineer",
+    "questions": [
+      {
+        "question": "What is the difference between an array and a linked list?",
+        "answer": "An array stores elements in contiguous memory locations with fixed size, allowing O(1) random access but O(n) insertion/deletion. A linked list stores elements as nodes with pointers to the next node, allowing O(1) insertion/deletion at head but O(n) access. Use arrays when you need frequent access, linked lists when you need frequent insertion/deletion.",
+        "category": "Data Structures",
+        "difficulty": "Fresher",
+        "keywords": ["array", "linked list", "contiguous memory", "pointer", "random access", "insertion", "deletion"]
+      },
+      {
+        "question": "What is OOPs? Explain its four pillars.",
+        "answer": "OOPs (Object Oriented Programming) is a programming paradigm based on objects. Four pillars: 1) Encapsulation — bundling data and methods together, hiding internal details. 2) Abstraction — showing only necessary details, hiding complexity. 3) Inheritance — a class acquiring properties of another class. 4) Polymorphism — same method behaving differently based on context (method overloading and overriding).",
+        "category": "OOPs",
+        "difficulty": "Fresher",
+        "keywords": ["OOPs", "encapsulation", "abstraction", "inheritance", "polymorphism", "overloading", "overriding"]
+      },
+      {
+        "question": "What is a primary key and a foreign key in SQL?",
+        "answer": "A primary key is a column (or set of columns) that uniquely identifies each row in a table — it cannot be NULL or duplicate. A foreign key is a column in one table that refers to the primary key of another table, establishing a relationship between the two tables and ensuring referential integrity.",
+        "category": "SQL",
+        "difficulty": "Fresher",
+        "keywords": ["primary key", "foreign key", "unique", "referential integrity", "relationship", "NULL"]
+      }
+    ]
+  },
+  {
+    "role_id": 2,
+    "company": "TCS",
+    "job_role": "Backend Developer",
+    "questions": [
+      {
+        "question": "What is a REST API and what are its common HTTP methods?",
+        "answer": "REST (Representational State Transfer) API is an architectural style for building web services using HTTP. Common HTTP methods: GET — retrieve data, POST — create new resource, PUT — update existing resource, DELETE — remove resource, PATCH — partially update a resource. REST APIs are stateless, meaning each request contains all the information needed to process it.",
+        "category": "REST APIs",
+        "difficulty": "Fresher",
+        "keywords": ["REST", "API", "GET", "POST", "PUT", "DELETE", "PATCH", "stateless", "HTTP"]
+      },
+      {
+        "question": "What is the difference between SQL and NoSQL databases?",
+        "answer": "SQL databases are relational, store data in tables with fixed schema, and use structured query language. Examples: MySQL, PostgreSQL. NoSQL databases are non-relational, store data in flexible formats like documents, key-value, or graphs. Examples: MongoDB, Redis. Use SQL when data is structured and relationships matter; use NoSQL when you need flexibility and high scalability.",
+        "category": "Databases",
+        "difficulty": "Fresher",
+        "keywords": ["SQL", "NoSQL", "relational", "schema", "MongoDB", "PostgreSQL", "scalability", "document"]
+      },
+      {
+        "question": "What is a microservice? How is it different from a monolith?",
+        "answer": "A monolith is a single unified application where all components are tightly coupled and deployed together. A microservice architecture breaks the application into small independent services, each handling a specific business function and communicating via APIs. Microservices are easier to scale and deploy independently, but add complexity in communication and infrastructure management.",
+        "category": "Microservices",
+        "difficulty": "Fresher",
+        "keywords": ["microservices", "monolith", "independent", "scalable", "API", "coupled", "deployment"]
+      }
+    ]
+  },
+  {
+    "role_id": 3,
+    "company": "Infosys",
+    "job_role": "Systems Engineer",
+    "questions": [
+      {
+        "question": "What is the difference between process and thread?",
+        "answer": "A process is an independent program in execution with its own memory space. A thread is the smallest unit of execution within a process, sharing the same memory space as other threads in the process. Multiple threads in a process can run concurrently, making threads lighter and faster to create than processes. Context switching between threads is cheaper than between processes.",
+        "category": "Operating Systems",
+        "difficulty": "Fresher",
+        "keywords": ["process", "thread", "memory", "concurrency", "context switching", "lightweight"]
+      },
+      {
+        "question": "What are the different types of joins in SQL?",
+        "answer": "INNER JOIN — returns rows matching in both tables. LEFT JOIN — returns all rows from left table and matching rows from right table (NULL if no match). RIGHT JOIN — returns all rows from right table and matching rows from left. FULL OUTER JOIN — returns all rows from both tables. CROSS JOIN — returns cartesian product of both tables.",
+        "category": "DBMS",
+        "difficulty": "Fresher",
+        "keywords": ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN", "CROSS JOIN", "SQL", "joins"]
+      },
+      {
+        "question": "What is the OSI model? Name its layers.",
+        "answer": "The OSI (Open Systems Interconnection) model is a framework that standardizes how different network systems communicate. 7 layers from bottom to top: 1) Physical — raw bit transmission. 2) Data Link — node-to-node delivery. 3) Network — routing (IP). 4) Transport — reliable delivery (TCP/UDP). 5) Session — managing sessions. 6) Presentation — data format/encryption. 7) Application — user-facing protocols (HTTP, FTP).",
+        "category": "Networking",
+        "difficulty": "Fresher",
+        "keywords": ["OSI", "Physical", "Data Link", "Network", "Transport", "Session", "Presentation", "Application", "TCP", "IP"]
+      }
+    ]
+  },
+  {
+    "role_id": 4,
+    "company": "Infosys",
+    "job_role": "Full Stack Developer",
+    "questions": [
+      {
+        "question": "What is the difference between props and state in React?",
+        "answer": "Props (properties) are read-only data passed from a parent component to a child component — the child cannot modify them. State is local data managed within a component that can change over time using setState or useState hook, triggering a re-render. Use props to pass data down the component tree; use state to manage data that changes within a component.",
+        "category": "React",
+        "difficulty": "Fresher",
+        "keywords": ["props", "state", "React", "useState", "re-render", "parent", "child", "component"]
+      },
+      {
+        "question": "What is the difference between localStorage and sessionStorage?",
+        "answer": "Both are web storage APIs for storing key-value pairs in the browser. localStorage persists data even after the browser is closed — data stays until explicitly cleared. sessionStorage stores data only for the duration of the browser session — data is cleared when the tab or browser is closed. Both can store around 5MB of data.",
+        "category": "HTML/CSS",
+        "difficulty": "Fresher",
+        "keywords": ["localStorage", "sessionStorage", "browser storage", "persist", "session", "key-value"]
+      },
+      {
+        "question": "What is Git and what is the difference between git merge and git rebase?",
+        "answer": "Git is a distributed version control system used to track code changes. git merge combines two branches by creating a new merge commit, preserving the full history of both branches. git rebase moves or replays commits of one branch on top of another, creating a linear history. Use merge to preserve context; use rebase for a cleaner, linear commit history.",
+        "category": "Git",
+        "difficulty": "Fresher",
+        "keywords": ["Git", "merge", "rebase", "branch", "commit", "version control", "linear history"]
+      }
+    ]
+  },
+  {
+    "role_id": 5,
+    "company": "CRED",
+    "job_role": "Backend Engineer",
+    "questions": [
+      {
+        "question": "What is indexing in databases and why is it used?",
+        "answer": "An index is a data structure (usually a B-tree) created on a column to speed up query lookups. Without an index, the database does a full table scan (O(n)). With an index, lookups are much faster (O(log n)). Indexes improve read performance but slightly slow down writes since the index must be updated on every insert/update. Use indexes on columns frequently used in WHERE, JOIN, or ORDER BY clauses.",
+        "category": "Databases",
+        "difficulty": "Fresher",
+        "keywords": ["index", "B-tree", "full table scan", "query performance", "read", "write", "WHERE", "JOIN"]
+      },
+      {
+        "question": "What is caching and where is it used in backend systems?",
+        "answer": "Caching is storing frequently accessed data in a fast-access layer (like Redis or Memcached) to reduce repeated computation or database queries. Common uses: caching API responses, session storage, rate limiting, and database query results. Cache improves response time and reduces load on the database. Key considerations are cache invalidation (when to clear stale data) and TTL (time to live).",
+        "category": "System Design",
+        "difficulty": "Fresher",
+        "keywords": ["cache", "Redis", "Memcached", "TTL", "invalidation", "session", "response time", "database load"]
+      },
+      {
+        "question": "What is the difference between authentication and authorization?",
+        "answer": "Authentication is the process of verifying who a user is — confirming identity (e.g. login with username and password, JWT token). Authorization is the process of verifying what a user is allowed to do — checking permissions (e.g. admin can delete, regular user can only read). Authentication always happens before authorization.",
+        "category": "System Design",
+        "difficulty": "Fresher",
+        "keywords": ["authentication", "authorization", "JWT", "identity", "permissions", "login", "access control"]
+      }
+    ]
+  },
+  {
+    "role_id": 6,
+    "company": "CRED",
+    "job_role": "Product Analyst",
+    "questions": [
+      {
+        "question": "What is the difference between a GROUP BY and a HAVING clause in SQL?",
+        "answer": "GROUP BY groups rows sharing the same value in specified columns and is used with aggregate functions like COUNT, SUM, AVG. HAVING filters the grouped results — it is like WHERE but applied after grouping. WHERE filters rows before grouping; HAVING filters groups after aggregation. Example: SELECT city, COUNT(*) FROM users GROUP BY city HAVING COUNT(*) > 100.",
+        "category": "SQL",
+        "difficulty": "Fresher",
+        "keywords": ["GROUP BY", "HAVING", "WHERE", "aggregate", "COUNT", "SUM", "AVG", "filter"]
+      },
+      {
+        "question": "What is A/B testing and how does it work?",
+        "answer": "A/B testing is an experiment where two versions (A and B) of a feature or UI are shown to different user groups simultaneously to determine which performs better. The control group sees version A (original) and the test group sees version B (variant). Results are measured using a defined metric (click rate, conversion). The winning version is rolled out to all users. Statistical significance is important before declaring a winner.",
+        "category": "Analytics",
+        "difficulty": "Fresher",
+        "keywords": ["A/B testing", "control group", "variant", "conversion", "statistical significance", "experiment", "metric"]
+      },
+      {
+        "question": "What is DAU, MAU and how is the DAU/MAU ratio used?",
+        "answer": "DAU (Daily Active Users) is the number of unique users who engage with the product in a single day. MAU (Monthly Active Users) is the number of unique users who engage in a month. DAU/MAU ratio (also called stickiness) indicates how often users return — a ratio of 0.5 means users visit on average 15 days per month. A higher ratio (closer to 1) means the product is more habit-forming.",
+        "category": "Product Metrics",
+        "difficulty": "Fresher",
+        "keywords": ["DAU", "MAU", "stickiness", "retention", "engagement", "active users", "ratio"]
+      }
+    ]
+  },
+  {
+    "role_id": 7,
+    "company": "PhonePe",
+    "job_role": "Software Development Engineer",
+    "questions": [
+      {
+        "question": "What is the difference between stack and queue?",
+        "answer": "A stack follows LIFO (Last In First Out) — the last element added is the first to be removed. Operations: push (add) and pop (remove). Example: undo functionality, function call stack. A queue follows FIFO (First In First Out) — the first element added is the first to be removed. Operations: enqueue (add) and dequeue (remove). Example: task scheduling, message queues.",
+        "category": "Data Structures",
+        "difficulty": "Fresher",
+        "keywords": ["stack", "queue", "LIFO", "FIFO", "push", "pop", "enqueue", "dequeue"]
+      },
+      {
+        "question": "What is a deadlock? How can it be prevented?",
+        "answer": "A deadlock occurs when two or more processes are waiting for each other to release resources, causing all of them to be stuck indefinitely. Four conditions for deadlock: Mutual exclusion, Hold and wait, No preemption, Circular wait. Prevention strategies: avoid circular wait by ordering resource acquisition, use timeouts, or use deadlock detection algorithms.",
+        "category": "System Design",
+        "difficulty": "Fresher",
+        "keywords": ["deadlock", "mutual exclusion", "hold and wait", "circular wait", "preemption", "prevention", "timeout"]
+      },
+      {
+        "question": "What is the difference between TCP and UDP?",
+        "answer": "TCP (Transmission Control Protocol) is connection-oriented — it establishes a connection before sending data, guarantees delivery, ordering, and error checking. Slower but reliable. Used in HTTP, file transfer. UDP (User Datagram Protocol) is connectionless — sends data without establishing a connection, no guarantee of delivery or ordering. Faster but unreliable. Used in video streaming, DNS, gaming.",
+        "category": "Distributed Systems",
+        "difficulty": "Fresher",
+        "keywords": ["TCP", "UDP", "connection-oriented", "reliable", "connectionless", "ordering", "streaming", "DNS"]
+      }
+    ]
+  },
+  {
+    "role_id": 8,
+    "company": "PhonePe",
+    "job_role": "Data Analyst",
+    "questions": [
+      {
+        "question": "What key metrics would you define to measure the health of PhonePe's payment platform?",
+        "answer": "Transaction metrics: Success Rate (successful transactions / total attempts), Failure Rate (and failure reasons — bank decline, timeout, user abort), Average Transaction Value (ATV), Gross Transaction Value (GTV/TPV — total volume processed). User metrics: DAU/MAU, New user activation rate, User retention (Day 1/7/30). Business metrics: Merchant onboarding rate, Take rate (revenue / GTV), Customer Acquisition Cost (CAC). Reliability: P99 payment latency, Uptime/Availability.",
+        "category": "Product Metrics",
+        "difficulty": "Fresher",
+        "keywords": ["success rate", "failure rate", "GTV", "TPV", "DAU", "MAU", "retention", "latency", "P99", "merchant", "CAC", "ATV", "uptime"]
+      },
+      {
+        "question": "What is the difference between mean, median and mode?",
+        "answer": "Mean is the average — sum of all values divided by count. Sensitive to outliers. Median is the middle value when data is sorted — not affected by outliers, better for skewed data. Mode is the most frequently occurring value. Example: for salaries [10k, 12k, 15k, 200k], mean is skewed high by the outlier, median gives a better central picture.",
+        "category": "Statistics",
+        "difficulty": "Fresher",
+        "keywords": ["mean", "median", "mode", "average", "outlier", "skewed", "central tendency"]
+      },
+      {
+        "question": "Write a SQL query to find the second highest transaction amount from a transactions table.",
+        "answer": "SELECT MAX(amount) FROM transactions WHERE amount < (SELECT MAX(amount) FROM transactions). Alternative using LIMIT: SELECT amount FROM transactions ORDER BY amount DESC LIMIT 1 OFFSET 1. The subquery approach finds the maximum value that is less than the overall maximum, which gives the second highest.",
+        "category": "SQL",
+        "difficulty": "Fresher",
+        "keywords": ["SQL", "subquery", "MAX", "ORDER BY", "LIMIT", "OFFSET", "second highest"]
+      }
+    ]
+  },
+  {
+    "role_id": 9,
+    "company": "Flipkart",
+    "job_role": "Software Development Engineer",
+    "questions": [
+      {
+        "question": "What is the difference between BFS and DFS?",
+        "answer": "BFS (Breadth First Search) explores all neighbours of a node before going deeper — uses a queue, finds shortest path in unweighted graphs. DFS (Depth First Search) explores as far as possible along a branch before backtracking — uses a stack (or recursion), good for cycle detection and topological sort. BFS is better for shortest path; DFS is better for exhaustive search.",
+        "category": "Algorithms",
+        "difficulty": "Fresher",
+        "keywords": ["BFS", "DFS", "breadth first", "depth first", "queue", "stack", "shortest path", "cycle detection"]
+      },
+      {
+        "question": "What is the difference between == and .equals() in Java?",
+        "answer": "== compares references (memory addresses) — checks if two variables point to the same object in memory. .equals() compares the actual content/value of objects. For primitive types (int, char), == compares values directly. For String and other objects, always use .equals() to compare content. Example: new String('a') == new String('a') is false, but .equals() returns true.",
+        "category": "Java",
+        "difficulty": "Fresher",
+        "keywords": ["==", "equals", "Java", "reference", "value comparison", "String", "object", "memory"]
+      },
+      {
+        "question": "What is normalization in databases? Explain 1NF, 2NF, 3NF.",
+        "answer": "Normalization is the process of organizing database tables to reduce redundancy and improve data integrity. 1NF (First Normal Form) — each column must have atomic (indivisible) values, no repeating groups. 2NF — must be in 1NF + every non-key column must depend on the entire primary key (no partial dependency). 3NF — must be in 2NF + no transitive dependencies (non-key columns must not depend on other non-key columns).",
+        "category": "SQL",
+        "difficulty": "Fresher",
+        "keywords": ["normalization", "1NF", "2NF", "3NF", "redundancy", "partial dependency", "transitive dependency", "primary key"]
+      }
+    ]
+  },
+  {
+    "role_id": 10,
+    "company": "Flipkart",
+    "job_role": "Frontend Engineer",
+    "questions": [
+      {
+        "question": "What is the difference between null and undefined in JavaScript?",
+        "answer": "undefined means a variable has been declared but not yet assigned a value — JavaScript sets it automatically. null is an intentional assignment representing 'no value' or 'empty' — the developer explicitly sets it. typeof undefined returns 'undefined'; typeof null returns 'object' (a known JS quirk). Use null when you want to intentionally clear a value.",
+        "category": "JavaScript",
+        "difficulty": "Fresher",
+        "keywords": ["null", "undefined", "JavaScript", "typeof", "declared", "assigned", "empty"]
+      },
+      {
+        "question": "What is the CSS box model?",
+        "answer": "The CSS box model describes how every HTML element is rendered as a rectangular box consisting of four layers from inside to outside: Content (actual text/image), Padding (space between content and border), Border (surrounds the padding), Margin (space outside the border, separating it from other elements). By default, width/height apply to content only. Using box-sizing: border-box includes padding and border in the width/height calculation.",
+        "category": "HTML/CSS",
+        "difficulty": "Fresher",
+        "keywords": ["box model", "content", "padding", "border", "margin", "box-sizing", "border-box", "CSS"]
+      },
+      {
+        "question": "What is event bubbling in JavaScript?",
+        "answer": "Event bubbling is the mechanism where an event triggered on a child element propagates upward through its parent elements in the DOM tree. For example, clicking a button inside a div will also trigger the click event on the div and all its ancestors. You can stop bubbling using event.stopPropagation(). The opposite is event capturing (top-down). event.preventDefault() stops the default browser behaviour but does not stop bubbling.",
+        "category": "JavaScript",
+        "difficulty": "Fresher",
+        "keywords": ["event bubbling", "propagation", "stopPropagation", "DOM", "capturing", "preventDefault", "parent", "child"]
+      }
+    ]
+  }
+]

@@ -1,64 +1,62 @@
 import json
 import os
 from django.core.management.base import BaseCommand
-from company.models import Company, Role, QuestionBank
+from company.models import Role, QuestionBank
 
 
 class Command(BaseCommand):
-    help = "Load questions from interview_dataset.json into QuestionBank"
+    help = "Load questions from interview_dataset_test.json into QuestionBank"
 
     def add_arguments(self, parser):
         parser.add_argument(
             "--file",
             type=str,
-            default="interview_dataset.json",
-            help="Path to the JSON dataset file (default: interview_dataset.json)",
+            default="interview_dataset_test.json",
+            help="Path to the JSON dataset file",
         )
 
-    def handle(self, *args, **options):
-        file_path = options["file"]
+    def handle(self, **options):
+        from django.conf import settings
+        file_path = os.path.join(settings.BASE_DIR, options["file"])
 
         if not os.path.exists(file_path):
             self.stderr.write(self.style.ERROR(f"File not found: {file_path}"))
             return
 
-        with open(file_path, "r") as f:
+        with open(file_path) as f:
             data = json.load(f)
 
         created_count = 0
         skipped_count = 0
 
         for entry in data:
-            company_name = entry.get("company", "").strip()
-            job_role = entry.get("job_role", "").strip()
-            category = entry.get("category", "").strip()
-            difficulty = entry.get("difficulty", "Fresher").strip()
-            question_text = entry.get("question", "").strip()
-            answer_text = entry.get("model_answer", "").strip()
-            keywords = entry.get("keywords", [])
-
-            company, _ = Company.objects.get_or_create(name=company_name)
-            role, _ = Role.objects.get_or_create(
-                company=company,
-                description=job_role,
-            )
-
-            if QuestionBank.objects.filter(question=question_text, role=role).exists():
-                skipped_count += 1
+            role_id = entry.get("role_id")
+            try:
+                role = Role.objects.get(id=role_id)
+            except Role.DoesNotExist:
+                self.stderr.write(self.style.WARNING(
+                    f"  Role id={role_id} ({entry.get('company')} - {entry.get('job_role')}) not found, skipping"
+                ))
                 continue
 
-            QuestionBank.objects.create(
-                role=role,
-                question=question_text,
-                answer=answer_text,
-                category=category,
-                difficulty=difficulty,
-                keywords=keywords,
-            )
-            created_count += 1
+            for q in entry.get("questions", []):
+                _, created = QuestionBank.objects.get_or_create(
+                    role=role,
+                    question=q["question"],
+                    defaults={
+                        "answer": q["answer"],
+                        "category": q.get("category", "General"),
+                        "difficulty": q.get("difficulty", "Fresher"),
+                        "keywords": q.get("keywords", []),
+                    },
+                )
+                if created:
+                    created_count += 1
+                else:
+                    skipped_count += 1
 
-        self.stdout.write(
-            self.style.SUCCESS(
-                f"Done. Created: {created_count}, Skipped (already exists): {skipped_count}"
-            )
-        )
+            self.stdout.write(f"  Loaded questions for: {role.company.name} - {role.title}")
+
+        self.stdout.write(self.style.SUCCESS(
+            f"\nDone. Created: {created_count}, Skipped (already exists): {skipped_count}"
+        ))

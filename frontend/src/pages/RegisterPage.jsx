@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { registerUser } from '../lib/api'
 
+const switchText = { textAlign: 'center', marginTop: '1.2rem', color: '#718096', fontSize: '0.9rem' }
+const link = { color: '#667eea', fontWeight: 600, cursor: 'pointer' }
+
 export default function RegisterPage() {
   const navigate = useNavigate()
   const [form, setForm] = useState({
@@ -63,6 +66,11 @@ export default function RegisterPage() {
             {loading ? 'Creating account…' : 'Create Account & Continue →'}
           </button>
         </form>
+
+        <p style={switchText}>
+          Already have an account?{' '}
+          <span style={link} onClick={() => navigate('/login')}>Sign in</span>
+        </p>
       </div>
     </div>
   )

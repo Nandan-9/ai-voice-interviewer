@@ -8,9 +8,17 @@ class Company(models.Model):
 
 
 class Role(models.Model):
-    company = models.ForeignKey(Company,on_delete=models.CASCADE, related_name="roles")
-    description = models.CharField(max_length=500,null=False,blank=False)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="roles")
+    title = models.CharField(max_length=200)
+    category = models.CharField(max_length=100, default="Technical")
+    difficulty = models.CharField(max_length=100, default="Fresher")
+    experience = models.CharField(max_length=50, default="0-2 Yrs")
+    interview_type = models.CharField(max_length=100, default="Technical")
+    duration_mins = models.IntegerField(default=60)
+    about_role = models.TextField(blank=True)
     skills = models.JSONField(default=list)
+    interview_structure = models.JSONField(default=list)
+    what_to_expect = models.JSONField(default=list)
 
 
 class QuestionBank(models.Model):
@@ -20,8 +28,6 @@ class QuestionBank(models.Model):
     category = models.CharField(max_length=100, blank=False, null=False, default="General")
     difficulty = models.CharField(max_length=100, blank=False, null=False, default="Fresher")
     keywords = models.JSONField(default=list)
-
-    
 
 
     

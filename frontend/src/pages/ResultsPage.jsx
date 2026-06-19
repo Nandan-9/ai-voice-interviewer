@@ -77,10 +77,7 @@ export default function ResultsPage() {
         ))}
 
         <div style={{ textAlign: 'center', marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          <button style={styles.btn} onClick={() => navigate('/setup')}>Try Another Role</button>
-          <button style={{ ...styles.btn, background: '#fff', color: '#667eea', border: '2px solid #667eea' }} onClick={() => navigate('/')}>
-            New Account
-          </button>
+          <button style={styles.btn} onClick={() => navigate('/')}>Finish</button>
         </div>
       </div>
     </div>

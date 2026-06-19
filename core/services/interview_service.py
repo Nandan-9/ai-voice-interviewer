@@ -9,6 +9,7 @@ from llm.services import prompts
 from dotenv import load_dotenv
 
 from company.models import QuestionBank
+from core.models import Interview
 
 load_dotenv()
 
@@ -21,7 +22,7 @@ _llm = ChatGoogleGenerativeAI(
 
 
 def get_questions(company, role):
-    filters = {"role__description": role}
+    filters = {"role__title": role}
     if company:
         filters["role__company__name"] = company
     questions = QuestionBank.objects.filter(**filters).order_by('?')[:3]
@@ -51,12 +52,21 @@ def generate_interview(company, role):
     raw = response.content.strip()
     cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.DOTALL).strip()
     try:
-        return json.loads(cleaned)
+        result = json.loads(cleaned)
     except json.JSONDecodeError:
         match = re.search(r"\{.*\}", cleaned, re.DOTALL)
         if match:
-            return json.loads(match.group(0))
-        raise
+            result = json.loads(match.group(0))
+        else:
+            raise
+
+    interview = Interview.objects.create(
+        company=company or '',
+        role=role,
+        questions=result.get('questions', []),
+    )
+    result['interview_id'] = interview.id
+    return result
 
 
 

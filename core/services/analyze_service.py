@@ -14,7 +14,10 @@ _llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
     api_key=os.getenv("GEMINI_API_KEY"),
     temperature=0.4,
-    generation_config={"response_mime_type": "application/json"},
+    generation_config={
+        "response_mime_type": "application/json",
+        "max_output_tokens": 8192,
+    },
 )
 
 
@@ -47,7 +50,54 @@ def analyze_interview(questions, responses):
     try:
         return json.loads(cleaned)
     except json.JSONDecodeError:
-        match = re.search(r"\{.*\}", cleaned, re.DOTALL)
-        if match:
-            return json.loads(match.group(0))
-        raise
+        return _repair_and_parse(cleaned)
+
+
+def _repair_and_parse(text: str) -> dict:
+    # Extract the outermost {...} block
+    start = text.find("{")
+    if start == -1:
+        raise ValueError("No JSON object found in LLM response")
+
+    # Walk forward tracking open braces/brackets to find where the object ends
+    # or patch it closed if the response was truncated
+    depth_brace = 0
+    depth_bracket = 0
+    in_string = False
+    escape = False
+    end = len(text)
+
+    for i, ch in enumerate(text[start:], start):
+        if escape:
+            escape = False
+            continue
+        if ch == "\\" and in_string:
+            escape = True
+            continue
+        if ch == '"':
+            in_string = not in_string
+            continue
+        if in_string:
+            continue
+        if ch == "{":
+            depth_brace += 1
+        elif ch == "}":
+            depth_brace -= 1
+            if depth_brace == 0:
+                end = i + 1
+                break
+        elif ch == "[":
+            depth_bracket += 1
+        elif ch == "]":
+            depth_bracket -= 1
+
+    fragment = text[start:end]
+
+    # If still unbalanced (truncated response), close open structures
+    if depth_brace > 0 or depth_bracket > 0:
+        fragment = fragment.rstrip().rstrip(",")
+        # Close any open string at the very end
+        fragment = re.sub(r'"[^"]*\Z', '""', fragment, flags=re.DOTALL)
+        fragment += "]" * depth_bracket + "}" * depth_brace
+
+    return json.loads(fragment)
