@@ -7,17 +7,21 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from llm.services import prompts
 from dotenv import load_dotenv
+from pydantic import BaseModel
 
 load_dotenv()
 
-_llm = ChatGoogleGenerativeAI(
+class Analysis(BaseModel):
+    overall_score: int
+    summary: str
+    strengths: list[str]
+    improvements: list[str]
+
+
+
+llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    api_key=os.getenv("GEMINI_API_KEY"),
     temperature=0.4,
-    generation_config={
-        "response_mime_type": "application/json",
-        "max_output_tokens": 8192,
-    },
 )
 
 
@@ -40,7 +44,10 @@ def analyze_interview(questions, responses):
 
     user_prompt = prompts.interview_analysis_prompt.format(interview_data=interview_data)
 
-    response = _llm.invoke([
+    structured_llm = llm.with_structured_output(Analysis)
+
+
+    response = structured_llm.invoke([
         SystemMessage(content="You are a JSON-only response assistant. Never use markdown."),
         HumanMessage(content=user_prompt),
     ])
@@ -51,7 +58,7 @@ def analyze_interview(questions, responses):
         return json.loads(cleaned)
     except json.JSONDecodeError:
         return _repair_and_parse(cleaned)
-
+                                         
 
 def _repair_and_parse(text: str) -> dict:
     # Extract the outermost {...} block

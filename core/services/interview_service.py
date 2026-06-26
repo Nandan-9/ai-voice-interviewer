@@ -15,9 +15,12 @@ load_dotenv()
 
 _llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    api_key=os.getenv("GEMINI_API_KEY"),
     temperature=0.7,
-    generation_config={"response_mime_type": "application/json"},
+    model_kwargs={
+        "generation_config": {
+            "response_mime_type": "application/json"
+        }
+    },
 )
 
 
