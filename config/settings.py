@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-^kg6)xhz(kg8xa*vik3=t___a3++%(ks(hm+2reb#5xc^#r))n
 DEBUG = True
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
