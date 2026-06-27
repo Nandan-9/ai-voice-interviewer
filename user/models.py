@@ -1,5 +1,6 @@
-from django.db import models
+import uuid
 
+from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 # Create your models here.
 
@@ -37,3 +38,29 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+
+
+
+
+class InterviewSessions(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="interview_sessions")
+    over_all_score = models.IntegerField(null=True, blank=True)
+    over_all_eval = models.CharField(max_length=500, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.email} - {self.id}"
+
+
+class InterviewResponse(models.Model):
+    session = models.ForeignKey(InterviewSessions, on_delete=models.CASCADE, related_name="responses")
+    question = models.ForeignKey("company.QuestionBank", on_delete=models.CASCADE, related_name="responses")
+    response = models.CharField(max_length=2000, null=True, blank=True)
+    strength = models.CharField(max_length=1000, null=True, blank=True)
+    weakness = models.CharField(max_length=1000, null=True, blank=True)
+
+    def __str__(self):
+        return f"Response for session {self.session.id}"
